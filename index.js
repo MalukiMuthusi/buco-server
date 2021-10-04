@@ -17,5 +17,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, () => {
-  console.log(`app listening at http://localhost:${port}`);
+  // TODO: use the appropriate url, for prod show the prod url, for staging show the staging url
+  const url = process.env.URL;
+  console.log(`app listening at ${url}:${port}`);
 });
