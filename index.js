@@ -1,8 +1,11 @@
 require("dotenv").config();
+const helmet = require("helmet");
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const contact = require("./contact/contact");
+
+app.use(helmet());
 
 const urlEncodedParser = express.urlencoded({ extended: false });
 app.use(urlEncodedParser);
@@ -17,7 +20,6 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, () => {
-  // TODO: use the appropriate url, for prod show the prod url, for staging show the staging url
   const url = process.env.URL;
   console.log(`app listening at ${url}:${port}`);
 });
