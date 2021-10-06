@@ -1,11 +1,11 @@
 const express = require("express");
+const { sendEmail } = require("./mailgun/mailgun");
 const router = express.Router();
 
 router.post("/", function (req, res) {
-  // TODO: send email address to the provided email of the client
-  console.log(req.body);
+  sendEmail(req.body.email, req.body.message);
 
-  res.send(req.body);
+  res.send({ status: "success" });
 });
 
 module.exports = router;
